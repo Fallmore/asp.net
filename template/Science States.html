@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Научные статьи - главная страница</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <!--  <link href="../static/img/favicon.png" rel="icon" th:href="@{/img/favicon.png}"> -->
+  <link href="../static/img/apple-touch-icon.png" rel="apple-touch-icon" th:href="@{/img/apple-touch-icon.png}">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" th:href="@{https://fonts.googleapis.com}">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin th:href="@{https://fonts.gstatic.com}">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"
+  th:href="@{https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap}">
+
+  <!-- Vendor CSS Files -->
+  <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+  <link href="../static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" th:href="@{/vendor/bootstrap-icons/bootstrap-icons.css}">
+  <link href="../static/vendor/aos/aos.css" rel="stylesheet" th:href="@{/vendor/aos/aos.css}">
+  <link href="../static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" th:href="@{/vendor/glightbox/css/glightbox.min.css}">
+  <link href="../static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" th:href="@{/vendor/swiper/swiper-bundle.min.css}">
+
+  <!-- Main CSS File -->
+  <link href="../static/css/main.css" rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="Science States.html" th:href="@{/}" class="logo d-flex align-items-center me-auto me-xl-0">
+        <h1 class="sitename">Научные статьи</h1>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" th:href="@{#hero}" class="active">Домой</a></li>
+          <li><a href="#about" th:href="@{#about}">О портале</a></li>
+          <li><a href="#features" th:href="@{#features}">Преимущества</a></li>
+          <li><a href="#gallery" th:href="@{#gallery}">Популярные статьи</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <a></a>
+      <a></a>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
+              <div class="company-badge mb-4">
+                <i class="bi bi-book me-2"> </i>
+                Портал научных статей
+              </div>
+
+              <h1 class="mb-4">
+                Научные статьи <br>
+                это про <br>
+                <span class="accent-text">развитие и прогресс!</span>
+              </h1>
+
+              <p class="mb-4 mb-md-4">
+                Веб-ресурс для чтения научных статей
+              </p>
+              <a class="btn-getstarted" href="#hero" th:href="@{#hero}">Узнать больше</a>
+            </div>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="hero-image" data-aos="zoom-out" data-aos-delay="300">
+              <img src="../static/img/mainImage.png" alt="Hero Image" class="img-fluid">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4 align-items-center justify-content-between">
+
+          <div class="col-xl-5" data-aos="fade-up" data-aos-delay="200">
+            <span class="about-meta">О ПОРТАЛЕ</span>
+            <h2 class="about-title">Для чего это нужно?</h2>
+            <p class="about-description">Мы предлагаем уникальную платформу для чтения проверенных научных статей.</p>
+            <p><b>Цель портала</b> — сделать процесс поиска и чтения научных статей быстрым и доступным для всех желающих.</p>
+            <p> В настоящие время, высокоразвитые технологии и огромное количество областей науки обеспечивают <b>огромное</b> 
+              количество научных статей, как старых, так и новых. </p>
+            <p>Мы стремимся улучшить опыт изучения статей и популяризировать науку среди людей!</p>
+          </div>
+
+          <div class="col-xl-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="image-wrapper">
+              <div class="images position-relative" data-aos="zoom-out" data-aos-delay="400">
+                <img src="../static/img/image2.jpg" th:src="@{img/image2.png}" alt="ДТП на Трусово около военкомата" class="img-fluid main-image rounded-4">
+                <img src="../static/img/image.jpg" th:src="@{img/image.png}" alt="Маги приехали суету наводить" class="img-fluid small-image rounded-4">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Features Section -->
+    <section id="features" class="features-2 section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row align-items-center">
+
+          <div class="col-lg-4">
+
+            <div class="feature-item text-end mb-5" data-aos="fade-right" data-aos-delay="200">
+              <div class="d-flex align-items-center justify-content-end gap-4">
+                <div class="feature-content">
+                  <h3>Удобство и доступность</h3>
+                  <p>Ищите и читайте статьи в любое время и из любого места</p>
+                </div>
+                <div class="feature-icon flex-shrink-0">
+                  <i class="bi bi-stopwatch"></i>
+                </div>
+              </div>
+            </div><!-- End .feature-item -->
+
+            <div class="feature-item text-end mb-5" data-aos="fade-right" data-aos-delay="300">
+              <div class="d-flex align-items-center justify-content-end gap-4">
+                <div class="feature-content">
+                  <h3>Прозрачность процесса</h3>
+                  <p>Отслеживайте авторов и источники их работ</p>
+                </div>
+                <div class="feature-icon flex-shrink-0">
+                  <i class="bi bi-eye"></i>
+                </div>
+              </div>
+            </div><!-- End .feature-item -->
+
+            <div class="feature-item text-end" data-aos="fade-right" data-aos-delay="400">
+              <div class="d-flex align-items-center justify-content-end gap-4">
+                <div class="feature-content">
+                  <h3>Информированность</h3>
+                  <p>Получайте уведомления о появлении статей об интересующей вас области</p>
+                </div>
+                <div class="feature-icon flex-shrink-0">
+                  <i class="bi bi-info-circle"></i>
+                </div>
+              </div>
+            </div><!-- End .feature-item -->
+
+          </div>
+
+          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+            <div class="phone-mockup text-center">
+              <img src="../static/img/image3.png" th:src="@{img/image3.png}" alt="Phone Mockup" class="img-fluid">
+            </div>
+          </div><!-- End Phone Mockup -->
+
+          <div class="col-lg-4">
+
+            <div class="feature-item mb-5" data-aos="fade-left" data-aos-delay="200">
+              <div class="d-flex align-items-center gap-4">
+                <div class="feature-icon flex-shrink-0">
+                  <i class="bi bi-person-arms-up"></i>
+                </div>
+                <div class="feature-content">
+                  <h3>Поддержка пользователей</h3>
+                  <p>Наша команда всегда готова помочь и ответить на ваши вопросы</p>
+                </div>
+              </div>
+            </div><!-- End .feature-item -->
+
+            <div class="feature-item mb-5" data-aos="fade-left" data-aos-delay="300">
+              <div class="d-flex align-items-center gap-4">
+                <div class="feature-icon flex-shrink-0">
+                  <i class="bi bi-search"></i>
+                </div>
+                <div class="feature-content">
+                  <h3>Эффективный поиск</h3>
+                  <p>Многокритериальный поиск статей обеспечит нахождение именно тех статей, которые вы ищете</p>
+                </div>
+              </div>
+            </div><!-- End .feature-item -->
+
+            <div class="feature-item" data-aos="fade-left" data-aos-delay="400">
+              <div class="d-flex align-items-center gap-4">
+                <div class="feature-icon flex-shrink-0">
+                  <i class="bi bi-browser-chrome"></i>
+                </div>
+                <div class="feature-content">
+                  <h3>Кроссплатформенность</h3>
+                  <p>Сайт адаптирован под ПК и под мобильные устройства</p>
+                </div>
+              </div>
+            </div><!-- End .feature-item -->
+
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Features Section -->
+
+    <!-- Gallery Cards Section -->
+    <section id="gallery" class="features-cards section">
+      <div class="container">
+        <div class="row gy-4">
+          <h1>Популярные статьи</h1>
+
+          <div class="card mb-3">
+            <img src="../static/img/Лисова Е.Н.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Особенности профессионального становления студентов-психологов</h5>
+              <p class="card-text">Особенности профессионального становления студентов-психологов определяются спецификой профессиональной психологической подготовки...</p>
+              <a class="card-text"><b class="text-muted me-2">Лисова Е. Н.</b></a>
+              <a class="card-text">
+                <i class="bi bi-eye text-muted"></i>
+                <small class="text-muted me-2">64 тыс.</small>
+              </a>
+              <a class="card-text"><small class="text-muted me-2">06.02.2025</small></a>
+              <a class="card-text"><small class="text-muted">Психологические науки</small></a>
+            </div>
+          </div>
+
+          <div class="card mb-3">
+            <img src="../static/img/Шарапаев Л. А.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Касание предмета манипулятором робота под управлением нейросети</h5>
+              <p class="card-text">Рассмотрено управление с помощью нейронных сетей движением манипулятора антропоморфного домашнего робота в процессе захвата предмета и его перемещения.</p>
+              <a class="card-text"><b class="text-muted me-2">Шарапаев Л. А.</b></a>
+              <a class="card-text">
+                <i class="bi bi-eye text-muted"></i>
+                <small class="text-muted me-2">59 тыс.</small>
+              </a>
+              <a class="card-text"><small class="text-muted me-2">12.02.2025</small></a>
+              <a class="card-text"><small class="text-muted">Механика и машиностроение</small></a>
+            </div>
+          </div>
+
+          <div class="card mb-3">
+            <img src="../static/img/Слепченко и тд.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Электрохимический контроль качества вод (обзор)</h5>
+              <p class="card-text">Приведен обзор опубликованных с 2003 по 2007 гг. работ по использованию электрохимических методов в анализе природных, минеральных, 
+                технологических, сточных вод на содержание неорганических элементов и органических веществ. Сведения по возможностям и условиям определения микроколичеств 
+                элементов и веществ в различных водах обобщены в таблицах. Отмечены аттестованные и стандартизованные методики выполнения измерений содержания элементов и 
+                веществ в водах электрохимическими методами.
+              </p>
+              <a class="card-text"><b class="text-muted me-2">Слепченко Г. Б., Пикула Н. П., Дубова Н. М., Щукина Т. И., Жаркова О. С.</b></a>
+              <a class="card-text">
+                <i class="bi bi-eye text-muted"></i>
+                <small class="text-muted me-2">58 тыс.</small>
+              </a>
+              <a class="card-text"><small class="text-muted me-2">16.02.2025</small></a>
+              <a class="card-text"><small class="text-muted">Химия</small></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- /Gallery Cards Section -->
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="Science States.html" th:href="@{/}" class="logo d-flex align-items-center">
+            <span class="sitename">Научные статьи</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>г. Астрахань, АГТУ</p>
+            <p><strong>Email:</strong> <span>info@ScienceState.ru</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href="https://astu.org" th:href="@{https://astu.org}"><i class="bi bi-buildings"></i></a>
+            <a href="https://t.me/aleksey_plekhanov" th:href="@{https://t.me/aleksey_plekhanov}"><i class="bi bi-bug"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Разделы сайта</h4>
+          <ul>
+            <li><a href="#hero" th:href="@{#hero}">Главная</a></li>
+            <li><a href="#about" th:href="@{#about}">О портале</a></li>
+            <li><a href="#features" th:href="@{#features}">Преимущества</a></li>
+            <li><a href="#gallery" th:href="@{#gallery}">Популярные статьи</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>©<span> Разработан в рамках дисциплины "Разработка приложений ASP.NET" - Самодуров В.А.</span></p>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" th:href="@{#}" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js" th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script src="../static/vendor/aos/aos.js" th:src="@{vendor/aos/aos.js}"></script>
+  <script src="../static/vendor/glightbox/js/glightbox.min.js" th:src="@{vendor/glightbox/js/glightbox.min.js}"></script>
+  <script src="../static/vendor/swiper/swiper-bundle.min.js" th:src="@{vendor/swiper/swiper-bundle.min.js}"></script>
+  <script src="../static/vendor/purecounter/purecounter_vanilla.js" th:src="@{vendor/purecounter/purecounter_vanilla.js}"></script>
+
+  <!-- Main JS File -->
+  <script src="../static/js/main.js" th:src="@{js/main.js}"></script>
+
+</body>
+
+</html>
