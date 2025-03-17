@@ -1,0 +1,51 @@
+﻿@page
+@using Newtonsoft.Json.Linq
+@model StatesModel
+@{
+    var gallery = new JArray {
+        new JObject { 
+                {"thumbnail", "../img/Лисова Е.Н.png"},{"title", "Особенности профессионального становления студентов-психологов"},
+                {"description", "Особенности профессионального становления студентов-психологов определяются спецификой профессиональной психологической подготовки..."},
+                {"author", "Лисова Е. Н."}, {"watches", "64 тыс."}, {"date", "06.02.2025"}, {"category", "Психологические науки"}
+            },
+        new JObject {
+                {"thumbnail", "../img/Шарапаев Л. А.png"}, {"title", "Касание предмета манипулятором робота под управлением нейросети"},
+                {"description", "Рассмотрено управление с помощью нейронных сетей движением манипулятора антропоморфного домашнего робота в процессе захвата предмета и его перемещения."},
+                {"author", "Шарапаев Л. А."}, {"watches", "59 тыс."}, {"date", "12.02.2025"}, {"category", "Механика и машиностроение"}
+        },
+        new JObject {
+                {"thumbnail", "../img/Слепченко и тд.png"}, {"title", "Электрохимический контроль качества вод (обзор)"},
+                {"description", @"Приведен обзор опубликованных с 2003 по 2007 гг.работ по использованию электрохимических методов в анализе природных,
+                                минеральных, технологических, сточных вод на содержание неорганических элементов и органических веществ. Сведения по возможностям и
+                                условиям определения микроколичеств элементов и веществ в различных водах обобщены в таблицах. Отмечены аттестованные и стандартизованные
+                                методики выполнения измерений содержания элементов и веществ в водах электрохимическими методами."},
+                {"author", "Слепченко Г. Б., Пикула Н. П., Дубова Н. М., Щукина Т. И., Жаркова О. С."}, {"watches", "58 тыс."}, {"date", "16.02.2025"}, {"category", "Химия"}
+        }
+    };
+}
+
+<!-- Gallery Cards Section -->
+<section id="galleryMain" class="hero section features-cards section mb-4">
+    <div class="container">
+        <div id="gallery-container" class="row gy-4">
+            @for (int i = 0; i < gallery.Count; i++)
+            {
+                <div class="card mb-3">
+                    <img src="@gallery[i]["thumbnail"]" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@gallery[i]["title"]</h5>
+                        <p class="card-text">@gallery[i]["description"]</p>
+                        <a class="card-text"><b class="text-muted me-2">@gallery[i]["author"]</b></a>
+                        <a class="card-text">
+                            <i class="bi bi-eye text-muted"></i>
+                            <small class="text-muted me-2">@gallery[i]["watches"]</small>
+                        </a>
+                        <a class="card-text"><small class="text-muted me-2">@gallery[i]["date"]</small></a>
+                        <a class="card-text"><small class="text-muted">@gallery[i]["category"]</small></a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- /Gallery Cards Section -->
