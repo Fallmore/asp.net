@@ -1,16 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LW_2.Model;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace LW_2.Pages
 {
-    public class StatesModel : PageModel
+    public class StatesModel(StateRepository stateRepository) : PageModel
     {
-        private readonly ILogger<StatesModel> _logger;
-
-        public StatesModel(ILogger<StatesModel> logger)
-        {
-            _logger = logger;
-        }
+        public IList<State> StateRepository = stateRepository.GetAll();
 
         public void OnGet()
         {

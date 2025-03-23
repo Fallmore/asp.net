@@ -2561,8 +2561,15 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Starter Section Section
+# Form state Section
 --------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
+.form-state {
+    position: relative;
+    padding-top: 130px;
+    background: #f2f8ff;
+}
+
+.form-state .container {
+    position: relative;
+    z-index: 3;
 }

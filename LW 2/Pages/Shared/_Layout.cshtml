@@ -1,4 +1,23 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string sects = @"[
+        { 'name': 'Главная', 'id': 'Index' },
+        { 'name': 'Статьи', 'id': 'States' },
+        { 'name': 'Добавить статью', 'id': 'PostState' }
+    ]";
+    Sections[] sections = JsonConvert.DeserializeObject<Sections[]>(sects);
+
+    string site = @"{ 'htmlName': 'Index', 'siteName': 'Научные статьи' }";
+    Site siteInfo = JsonConvert.DeserializeObject<Site>(site);
+
+    string footer = @"{ 
+        'address': 'г. Астрахань, АГТУ', 'email': 'info@ScienceState.ru',
+        'social': [{ 'link': 'https://astu.org', 'icon': 'bi bi-buildings' }, { 'link': 'https://t.me/UnfallenMore', 'icon': 'bi bi-bug' }],
+        'copyright': 'Разработан в рамках дисциплины \'Разработка приложений ASP.NET\' - Самодуров В.А.'
+    }";
+    Footer contentFooter = JsonConvert.DeserializeObject<Footer>(footer);
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -18,14 +37,30 @@
     <link rel="stylesheet" href="~/vendor/swiper/swiper-bundle.css" />
     
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    @* <link rel="stylesheet" href="~/LW_2.styles.css" asp-append-version="true" /> *@
 
     <!-- Main CSS File -->
     <link rel="stylesheet" href="~/css/main.css" />
 </head>
 <body>
     <header id="header" class="header d-flex align-items-center fixed-top">
-        <!-- Заполнение функцией header -->
+        <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="@siteInfo.HtmlName" class="logo d-flex align-items-center me-auto me-xl-0">
+                <h1 class="sitename">@siteInfo.SiteName</h1>
+            </a>
+            <nav id="navmenu" class="navmenu sections">
+                <ul>
+                    @for (int i = 0; i < sections.Length; i++)
+                    {
+                        <li><a href="@sections[i].Id">@sections[i].Name</a></li>
+                    }
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+            <!-- Костыльное выравнивание по центру -->
+            <a></a>
+            <a></a>
+            <!-- /Костыльное выравнивание по центру -->
+        </div>
     </header>
 
     <div class="container">
@@ -35,7 +70,37 @@
     </div>
 
     <footer id="footer" class="footer">
-        <!-- Заполнение функцией footer -->
+        <div class="container footer-top">
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6 footer-about">
+                    <a href="@siteInfo.HtmlName" class="logo d-flex align-items-center">
+                        <span class="sitename">@siteInfo.SiteName</span>
+                    </a>
+                    <div class="footer-contact pt-3">
+                        <p>@contentFooter.Address</p>
+                        <p><strong>Email:</strong> <span>@contentFooter.Email</span></p>
+                    </div>
+                    <div class="social-links d-flex mt-4">
+                        <a href="@contentFooter.Social[0].Link"><i class="@contentFooter.Social[0].Icon"></i></a>
+                        <a href="@contentFooter.Social[1].Link"><i class="@contentFooter.Social[1].Icon"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 footer-links sections">
+                    <h4>Разделы сайта</h4>
+                    <ul>
+                        @for (int i = 0; i < sections.Length; i++)
+                        {
+                            <li><a href="@sections[i].Id">@sections[i].Name</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container copyright text-center mt-4">
+            <p>©<span> @contentFooter.Copyright</span></p>
+        </div>
     </footer>
 
     <!-- Scroll Top -->
