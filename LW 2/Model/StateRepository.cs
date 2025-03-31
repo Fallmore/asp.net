@@ -6,19 +6,30 @@ namespace LW_2.Model
     {
         private IList<State> _state = [];
 
-        public IList<State> GetAll()
+        public async Task<IList<State>> GetAllAsync()
         {
             using var stream = File.OpenText("db.json");
             if (stream != null)
-                _state = JsonSerializer.Deserialize<IList<State>>(stream.ReadToEnd()) ?? [];
+                _state = JsonSerializer.Deserialize<IList<State>>(await stream.ReadToEndAsync()) ?? [];
             return _state;
         }
 
-        public void Add(State state)
+        public async Task AddAsync(State state)
         {
             _state.Add(state);
             var json = JsonSerializer.Serialize(_state);
-            File.WriteAllText("db.json", json);
+            await File.WriteAllTextAsync("db.json", json);
+        }
+
+        public async Task DeleteAsync(Guid guid)
+        {
+            State? state = _state.SingleOrDefault(s => s.Id == guid);
+            if (state != null)
+            {
+                _state.Remove(state);
+                var json = JsonSerializer.Serialize(_state);
+                await File.WriteAllTextAsync("db.json", json);
+            }
         }
     }
 }

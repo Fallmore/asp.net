@@ -6,11 +6,18 @@ namespace LW_2.Pages
 {
     public class StatesModel(StateRepository stateRepository) : PageModel
     {
-        public IList<State> StateRepository = stateRepository.GetAll();
+        public IList<State> StateRepository = stateRepository.GetAllAsync().Result;
 
-        public void OnGet()
+        [BindProperty]
+        public State? State { get; set; }
+
+        public async Task<IActionResult> OnPostDeleteAsync()
         {
+            if (State != null)
+                await stateRepository.DeleteAsync(State.Id);
+            return RedirectToPage();
         }
+
     }
 
 }

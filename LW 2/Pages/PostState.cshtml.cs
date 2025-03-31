@@ -11,9 +11,9 @@ namespace LW_2.Pages
         [BindProperty]
         public State? State { get; set; }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (State != null) StateRepository.Add(State);
+            if (State != null) await StateRepository.AddAsync(State);
             return RedirectToPage();
         }
     }

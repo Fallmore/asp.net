@@ -12,7 +12,7 @@ namespace LW_2.Pages
 
     public class IndexModel(StateRepository stateRepository) : PageModel
     {
-        public IList<State> StateRepository = stateRepository.GetAll();
+        public IList<State> StateRepository = stateRepository.GetAllAsync().Result;
 
         public void OnGet()
         {
