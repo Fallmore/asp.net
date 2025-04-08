@@ -1,0 +1,33 @@
+﻿@model RazorMVC.Models.State
+@{
+    IList<State> states = ViewData["states"] as IList<State> ?? [];
+}
+
+<!-- Gallery Cards Section -->
+<section id="galleryMain" class="hero section features-cards section mb-4">
+    <div class="container">
+        <div id="gallery-container" class="row gy-4">
+            @for (int i = 0; i < states.Count; i++)
+            {
+                <form method="post" asp-action="Delete">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title text-black fw-bold">@states[i].Title</h5>
+                            <p class="card-text">@states[i].Description</p>
+                            <a class="card-text"><b class="text-muted me-2">@states[i].Author</b></a>
+                            <a class="card-text">
+                                <i class="bi bi-eye text-muted"></i>
+                                <small class="text-muted me-2">@states[i].RoundWatches()</small>
+                            </a>
+                            <a class="card-text"><small class="text-muted me-2">@states[i].PostTime</small></a>
+                            <a class="card-text"><small class="text-muted">@states[i].Category</small></a>
+                            <input type="hidden" asp-for="IdState" value="@states[i].IdState" />
+                            <button type="submit" class="btn btn-primary" style="float: right">Удалить</button>
+                        </div>
+                    </div>
+                </form>
+            }
+        </div>
+    </div>
+</section>
+<!-- /Gallery Cards Section -->
