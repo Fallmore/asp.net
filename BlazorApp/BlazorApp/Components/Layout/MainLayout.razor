@@ -1,0 +1,36 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+	<header id="header" class="header d-flex align-items-center fixed-top">
+			<NavMenu />
+	</header>
+
+	<div class="container">
+		<main role="main" class="pb-3">
+			@Body
+		</main>
+	</div>
+
+	<!-- Scroll Top -->
+	<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="vendor/aos/aos.js"></script>
+	<script src="vendor/glightbox/js/glightbox.min.js"></script>
+	<script src="vendor/swiper/swiper-bundle.min.js"></script>
+
+	<script src="lib/jquery/dist/jquery.min.js"></script>
+
+	<!-- App JS File -->
+	<script src="app.js"></script>
+</div>
+
+<footer id="footer" class="footer">
+	<Footer />
+</footer>
+
+<div id="blazor-error-ui">
+	An unhandled error has occurred.
+	<a href="" class="reload">Reload</a>
+	<a class="dismiss">🗙</a>
+</div>

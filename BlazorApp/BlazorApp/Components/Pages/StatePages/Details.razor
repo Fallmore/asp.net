@@ -1,0 +1,70 @@
+﻿@page "/states/details"
+@using Microsoft.EntityFrameworkCore
+@using BlazorApp.Models
+@inject IDbContextFactory<BlazorApp.Data.StateContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Просмотр статьи</PageTitle>
+
+
+@if (state is null)
+{
+	<h1>Просмотр</h1>
+	<div>
+		<h2>Статья</h2>
+		<hr />
+		<p><em>Загрузка...</em></p>
+	</div>
+}
+else
+{
+	<section id="galleryMain" class="hero section features-cards section mb-4">
+		<div class="container">
+			<h1>Просмотр</h1>
+			<h2>@state.Title</h2>
+			<hr />
+			<dl class="row">
+				<dt class="col-sm-2">Название</dt>
+				<dd class="col-sm-10">@state.Title</dd>
+				<dt class="col-sm-2">Описание</dt>
+				<dd class="col-sm-10">@state.Description</dd>
+				<dt class="col-sm-2">Содержимое</dt>
+				<dd class="col-sm-10">@state.Content</dd>
+				<dt class="col-sm-2">Автор</dt>
+				<dd class="col-sm-10">@state.Author</dd>
+				<dt class="col-sm-2">Просмотры</dt>
+				<dd class="col-sm-10">@state.Watches</dd>
+				<dt class="col-sm-2">Время публикации</dt>
+				<dd class="col-sm-10">@state.PostTime</dd>
+				<dt class="col-sm-2">Категория</dt>
+				<dd class="col-sm-10">@state.Category</dd>
+			</dl>
+			<div>
+				<a href="@($"/states/edit?idstate={state.IdState}&order={order}")">Изменить</a> |
+				<a href="@($"/states/#{order}")">Вернуться обратно</a>
+			</div>
+		</div>
+	</section>
+}
+
+@code {
+	private State? state;
+
+	[SupplyParameterFromQuery]
+	private Guid IdState { get; set; }
+
+	[SupplyParameterFromQuery]
+	private string? order { get; set; }
+
+	protected override async Task OnInitializedAsync()
+	{
+		using var context = DbFactory.CreateDbContext();
+		state = await context.state.FirstOrDefaultAsync(m => m.IdState == IdState);
+		if (order == "-1" || order == null) order = "galleryMain";
+
+		if (state is null)
+		{
+			NavigationManager.NavigateTo("notfound");
+		}
+	}
+}

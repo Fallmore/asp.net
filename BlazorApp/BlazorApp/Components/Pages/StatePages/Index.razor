@@ -1,0 +1,50 @@
+﻿@page "/states"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using BlazorApp.Models
+@using BlazorApp.Data
+@implements IAsyncDisposable
+@inject IDbContextFactory<BlazorApp.Data.StateContext> DbFactory
+
+<PageTitle>Статьи</PageTitle>
+
+<section id="galleryMain" class="hero section features-cards section mb-4">
+	<div class="container">
+		<div id="gallery-container" class="row gy-4">
+			@for (int i = 0; i < states.Count; i++)
+			{
+				<div id="@i" class="card mb-3">
+					<div class="card-body">
+						<h5 class="card-title text-black fw-bold">@states[i].Title</h5>
+						<p class="card-text">@states[i].Description</p>
+						<a class="card-text"><b class="text-muted me-2">@states[i].Author</b></a>
+						<a class="card-text">
+							<i class="bi bi-eye text-muted"></i>
+							<small class="text-muted me-2">@states[i].RoundWatches()</small>
+						</a>
+						<a class="card-text"><small class="text-muted me-2">@states[i].PostTime</small></a>
+						<a class="card-text"><small class="text-muted">@states[i].Category</small></a>
+						<div style="float: right">
+							<a href="@($"states/edit?idstate={states[i].IdState}&order={i-1}")">Изменить</a> |
+							<a href="@($"states/details?idstate={states[i].IdState}&order={i-1}")">Прочитать</a> |
+							<a href="@($"states/delete?idstate={states[i].IdState}&order={i-1}")">Удалить</a>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</section>
+
+@code {
+	private StateContext context = default!;
+	private IList<State> states = [];
+
+	protected override void OnInitialized()
+	{
+		context = DbFactory.CreateDbContext();
+		states = context.state.ToList();
+	}
+
+	public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}

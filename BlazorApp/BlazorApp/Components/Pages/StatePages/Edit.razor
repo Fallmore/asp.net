@@ -1,0 +1,118 @@
+﻿@page "/states/edit"
+@using Microsoft.EntityFrameworkCore
+@using BlazorApp.Models
+@inject IDbContextFactory<BlazorApp.Data.StateContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Изменение</PageTitle>
+
+
+@if (State is null)
+{
+	<h1>Изменение</h1>
+	<h2>Статья</h2>
+	<hr />
+	<p><em>Loading...</em></p>
+}
+else
+{
+	<section id="galleryMain" class="hero section features-cards section mb-4">
+		<div class="container">
+			<h1>Изменение</h1>
+			<h2>@State.Title</h2>
+			<hr />
+			<div class="container">
+					<EditForm method="post" Model="State" OnValidSubmit="UpdateState" FormName="edit" Enhance>
+						<DataAnnotationsValidator />
+						<ValidationSummary role="alert" />
+						<input type="hidden" name="State.IdState" value="@State.IdState" />
+						<div class="mb-3">
+							<label for="title" class="form-label">Название</label>
+							<InputText id="title" @bind-Value="State.Title" class="form-control" required/>
+							<ValidationMessage For="() => State.Title" class="text-danger" />
+						</div>
+						<div class="mb-3">
+							<label for="description" class="form-label">Описание</label>
+						<InputTextArea id="description" @bind-Value="State.Description" class="form-control" style="height: 113px !important;" required />
+							<ValidationMessage For="() => State.Description" class="text-danger" />
+						</div>
+						<div class="mb-3">
+							<label for="content" class="form-label">Содержимое</label>
+						<InputTextArea id="content" @bind-Value="State.Content" class="form-control" style="height: 200px !important;" required />
+							<ValidationMessage For="() => State.Content" class="text-danger" />
+						</div>
+						<div class="mb-3">
+						<label for="author" class="form-label">Авторы</label>
+						<InputText id="author" @bind-Value="State.Author" class="form-control" required />
+							<ValidationMessage For="() => State.Author" class="text-danger" />
+						</div>
+						<div class="mb-3">
+							<label for="category" class="form-label">Категория</label>
+						<InputText id="category" @bind-Value="State.Category" class="form-control" required />
+							<ValidationMessage For="() => State.Category" class="text-danger" />
+						</div>
+						<button type="submit" class="btn btn-primary">Сохранить</button>
+					</EditForm>
+			</div>
+		</div>
+	</section>
+}
+
+<div>
+	<a href="/states/#@order">Вернуться обратно</a>
+</div>
+
+@code {
+	[SupplyParameterFromQuery]
+	private Guid IdState { get; set; }
+
+	[SupplyParameterFromQuery]
+	private string? order { get; set; }
+
+	[SupplyParameterFromForm]
+	private State? State { get; set; }
+
+	protected override async Task OnInitializedAsync()
+	{
+		using var context = DbFactory.CreateDbContext();
+		State ??= await context.state.FirstOrDefaultAsync(m => m.IdState == IdState);
+		if (order == "-1" || order == null) order = "galleryMain";
+		
+		if (State is null)
+		{
+			NavigationManager.NavigateTo("notfound");
+		}
+	}
+
+	// To protect from overposting attacks, enable the specific properties you want to bind to.
+	// For more information, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+	private async Task UpdateState()
+	{
+		using var context = DbFactory.CreateDbContext();
+		context.Attach(State!).State = EntityState.Modified;
+
+		try
+		{
+			await context.SaveChangesAsync();
+		}
+		catch (DbUpdateConcurrencyException)
+		{
+			if (!StateExists(State!.IdState))
+			{
+				NavigationManager.NavigateTo("notfound");
+			}
+			else
+			{
+				throw;
+			}
+		}
+
+		NavigationManager.NavigateTo("/states");
+	}
+
+	private bool StateExists(Guid idstate)
+	{
+		using var context = DbFactory.CreateDbContext();
+		return context.state.Any(e => e.IdState == idstate);
+	}
+}

@@ -1,0 +1,87 @@
+﻿@page "/states/delete"
+@using Microsoft.EntityFrameworkCore
+@using BlazorApp.Models
+@inject IDbContextFactory<BlazorApp.Data.StateContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Удаление</PageTitle>
+
+<section id="galleryMain" class="hero section features-cards section mb-4">
+	<div class="container">
+		<h1>Удаление</h1>
+
+		<p>Вы уверены, что хотите удалить эту статью?</p>
+		<div>
+			<h2>Статья</h2>
+			<hr />
+			@if (state is null)
+			{
+				<p><em>Загрузка...</em></p>
+			}
+			else
+			{
+				<dl class="row">
+					<dt class="col-sm-2">Название</dt>
+					<dd class="col-sm-10">@state.Title</dd>
+				</dl>
+				<dl class="row">
+					<dt class="col-sm-2">Описание</dt>
+					<dd class="col-sm-10">@state.Description</dd>
+				</dl>
+				<dl class="row">
+					<dt class="col-sm-2">Содержимое</dt>
+					<dd class="col-sm-10">@state.Content</dd>
+				</dl>
+				<dl class="row">
+					<dt class="col-sm-2">Авторы</dt>
+					<dd class="col-sm-10">@state.Author</dd>
+				</dl>
+				<dl class="row">
+					<dt class="col-sm-2">Просмотры</dt>
+					<dd class="col-sm-10">@state.Watches</dd>
+				</dl>
+				<dl class="row">
+					<dt class="col-sm-2">Время публикации</dt>
+					<dd class="col-sm-10">@state.PostTime</dd>
+				</dl>
+				<dl class="row">
+					<dt class="col-sm-2">Категория</dt>
+					<dd class="col-sm-10">@state.Category</dd>
+				</dl>
+				<EditForm method="post" Model="state" OnValidSubmit="DeleteState" FormName="delete" Enhance>
+					<button type="submit" class="btn btn-danger" disabled="@(state is null)">Удалить</button> |
+					<a href="/states/#@order">Вернуться обратно</a>
+				</EditForm>
+			}
+		</div>
+	</div>
+</section>
+@code {
+	private State? state;
+
+	[SupplyParameterFromQuery]
+	private Guid IdState { get; set; }
+
+	[SupplyParameterFromQuery]
+	private string? order { get; set; }
+
+	protected override async Task OnInitializedAsync()
+	{
+		using var context = DbFactory.CreateDbContext();
+		state = await context.state.FirstOrDefaultAsync(m => m.IdState == IdState);
+		if (order == "-1" || order == null) order = "galleryMain";
+
+		if (state is null)
+		{
+			NavigationManager.NavigateTo("notfound");
+		}
+	}
+
+	private async Task DeleteState()
+	{
+		using var context = DbFactory.CreateDbContext();
+		context.state.Remove(state!);
+		await context.SaveChangesAsync();
+		NavigationManager.NavigateTo("/states");
+	}
+}

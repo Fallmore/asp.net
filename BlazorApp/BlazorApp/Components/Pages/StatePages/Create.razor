@@ -1,0 +1,56 @@
+﻿@page "/states/create"
+@using Microsoft.EntityFrameworkCore
+@using BlazorApp.Models
+@inject IDbContextFactory<BlazorApp.Data.StateContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Добавление статьи</PageTitle>
+
+<section id="stateForm" class="form-state">
+	<div class="container">
+		<EditForm method="post" Model="State" OnValidSubmit="AddState" FormName="create" Enhance>
+			<DataAnnotationsValidator />
+			<ValidationSummary class="text-danger" role="alert" />
+			<div class="mb-3">
+				<label for="title" class="form-label">Название статьи</label>
+				<InputText id="title" @bind-Value="State.Title" class="form-control" required />
+				<ValidationMessage For="() => State.Title" class="text-danger" />
+			</div>
+			<div class="mb-3">
+				<label for="description" class="form-label">Описание</label>
+				<InputTextArea id="description" @bind-Value="State.Description" class="form-control" style="height: 113px !important;" required />
+				<ValidationMessage For="() => State.Description" class="text-danger" />
+			</div>
+			<div class="mb-3">
+				<label for="content" class="form-label">Содержание</label>
+				<InputTextArea id="content" @bind-Value="State.Content" class="form-control" style="height: 200px !important;" required />
+				<ValidationMessage For="() => State.Content" class="text-danger" />
+			</div>
+			<div class="mb-3">
+				<label for="author" class="form-label">Авторы</label>
+				<InputText id="author" @bind-Value="State.Author" class="form-control" required />
+				<ValidationMessage For="() => State.Author" class="text-danger" />
+			</div>
+			<div class="mb-3">
+				<label for="category" class="form-label">Категория</label>
+				<InputText id="category" @bind-Value="State.Category" class="form-control" required />
+				<ValidationMessage For="() => State.Category" class="text-danger" />
+			</div>
+			<button type="submit" class="btn btn-primary">Добавить</button>
+		</EditForm>
+	</div>
+</section>
+
+@code {
+	[SupplyParameterFromForm]
+	private State State { get; set; } = new();
+
+	// To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+	private async Task AddState()
+	{
+		using var context = DbFactory.CreateDbContext();
+		context.state.Add(State);
+		await context.SaveChangesAsync();
+		NavigationManager.NavigateTo("/states");
+	}
+}
